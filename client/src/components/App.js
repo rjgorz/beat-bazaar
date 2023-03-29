@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Playlists from "./Playlists"
 import { Switch, Route } from "react-router-dom";
+import Playlists from "./Playlists";
+import AllSongs from "./AllSongs";
 import Nav from "./Nav";
+import Home from "./Home";
+
 
 function App() {
   const [playlists, setPlaylists] = useState([])
@@ -17,19 +20,23 @@ function App() {
     .then(playlist_data => setPlaylists(playlist_data))
   }, [])
 
-  if (songs || playlists)
-    return(
-      <div>
-        <h1>BeatBazaar</h1>
-        <Nav />
-        <Playlists playlists={playlists} />
-      </div>
-    )
-  else
-    return(
-      <h1>LOADING</h1>
-    )
-  
+  return(
+    <div>
+      <Nav />
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route path='/playlists'>
+          <Playlists playlists={playlists} />
+        </Route>
+        <Route path='/songs'>
+          <AllSongs songs={songs} />
+        </Route>
+      </Switch>
+      <Playlists playlists={playlists} />
+    </div>
+  )
 }
 
 export default App;
