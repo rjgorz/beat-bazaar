@@ -34,7 +34,6 @@ function App() {
           <AllSongs songs={songs} />
         </Route>
       </Switch>
-      <Playlists playlists={playlists} />
     </div>
   )
 }

@@ -15,7 +15,7 @@ function Nav() {
           </div>
         ) : (
           <ul>
-            <li onClick={() => setMenu(!menu)}>x</li>
+            <li onClick={() => setMenu(!menu)}>X</li>
             <li><NavLink to='/'>Home</NavLink></li>
             <li><NavLink to='/playlists'> Playlist</NavLink></li>
             <li><NavLink to='/songs'> Songs</NavLink></li>
