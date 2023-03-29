@@ -36,7 +36,7 @@ api.add_resource(SongById, '/songs/<int:id>')
 
 class Playlists(Resource):
     def get(self):
-        playlist_dicts = [playlist.to_dict() for playlist in Playlist.query.all()]
+        playlist_dicts = [playlist.to_dict(rules=('songs',)) for playlist in Playlist.query.all()]
 
         return make_response(
             playlist_dicts,

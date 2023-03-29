@@ -7,6 +7,8 @@ from config import db
 class Song(db.Model, SerializerMixin):
     __tablename__ = 'songs'
 
+    serialize_rules = ('-playlist_songs', '-playlists.songs')
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     genre = db.Column(db.String, nullable=False)
@@ -22,6 +24,8 @@ class Song(db.Model, SerializerMixin):
 class Playlist(db.Model, SerializerMixin):
     __tablename__ = 'playlists'
 
+    serialize_rules = ('-playlist_songs', '-songs.playlists')
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
 
@@ -33,6 +37,9 @@ class Playlist(db.Model, SerializerMixin):
     
 class PlaylistSong(db.Model, SerializerMixin):
     __tablename__ = 'playlist_songs'
+
+    serialize_rules = ('-song.playlist_songs', '-song.playlists',
+                       '-playlist.playlist_songs', '-playlist.songs')
 
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.String, nullable=False)
