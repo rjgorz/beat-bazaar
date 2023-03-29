@@ -31,6 +31,7 @@ if __name__ == '__main__':
         for i in range(10):
             new_song = Song(
                 title=fake.unique.word(),
+                artist=fake.name(),
                 genre='something',
                 url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             )

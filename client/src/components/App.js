@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
+import { Container } from "semantic-ui-react"
 import Playlists from "./Playlists";
 import AllSongs from "./AllSongs";
 import Nav from "./Nav";
@@ -21,7 +22,7 @@ function App() {
   }, [])
 
   return(
-    <div>
+    <Container>
       <Nav />
       <Switch>
         <Route exact path='/'>
@@ -34,7 +35,7 @@ function App() {
           <AllSongs songs={songs} />
         </Route>
       </Switch>
-    </div>
+    </Container>
   )
 }
 
