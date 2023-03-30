@@ -1,3 +1,28 @@
-/* .songItem, .songButton {
-    width: 50%
-} */
+.font-link {
+    font-family: 'Permanent Marker';
+}
+
+.btn {
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    padding: 10px 60px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    cursor: pointer;
+    font-family: 'Permanent Marker';
+}
+.dark {
+    background-color: #333;
+    color: #fff;
+    }
+.light {
+    background-color: #fff;
+    color: #333;
+    }
+
+.h1 {
+    font-size: 70px;
+    font-family: 'Permanent Marker';
+    text-align: Center;
+}
