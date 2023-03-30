@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Playlists from "./Playlists"
 import { Switch, Route } from "react-router-dom";
+import Playlists from "./Playlists";
+import AllSongs from "./AllSongs";
 import Nav from "./Nav";
+
 import '../index.css'
+import Home from "./Home";
+
 
 function App() {
   const [playlists, setPlaylists] = useState([])
@@ -29,24 +33,27 @@ useEffect(() => {
     .then(playlist_data => setPlaylists(playlist_data))
   }, [])
 
-  if (songs || playlists)
-    return(
-      <div style = {{
+  return(
+    <div style = {{
         backgroundImage: `url("https://www.onlygfx.com/wp-content/uploads/2018/08/10-realistic-lightning-bolt-cover.jpg")`
       }} className = {`App ${theme}`}>
         <button className="btn" style={{float: 'right'}} onClick = {toggleTheme}>Toggle Theme</button>
         <h1 className= 'h1'>BeatBazaar</h1>
         <Nav style = {{float: 'right'}}/>
-        <div> 
-        <Playlists playlists={playlists} />
-        </div>
-      </div>
-    )
-  else
-    return(
-      <h1>LOADING</h1>
-    )
-  
- }
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route path='/playlists'>
+          <Playlists playlists={playlists} />
+        </Route>
+        <Route path='/songs'>
+          <AllSongs songs={songs} />
+        </Route>
+      </Switch>
+      <Playlists playlists={playlists} />
+    </div>
+  )
+}
 
 export default App;
