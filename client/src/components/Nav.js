@@ -1,29 +1,53 @@
-import React, { useState } from "react"
-import { NavLink } from "react-router-dom"
+import { useState } from 'react'
+import {Link} from 'react-router-dom'
+import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 import { GiHamburgerMenu } from 'react-icons/gi'
 
 function Nav() {
-  const [menu, setMenu] = useState(false);
+ const [menu, setMenu] = useState(false)
 
-  return (
-    <>
-      <h1>MUSIC</h1>
-      <div>
-        {!menu ? (
-          <div onClick={() => setMenu(!menu)}>
-            <GiHamburgerMenu size={30} />
-          </div>
-        ) : (
-          <ul>
+    return (
+        <Nav> 
+         <Menu>
+           {!menu?
+           <div onClick={() => setMenu(!menu)}>
+             <GiHamburgerMenu size={40}/> 
+           </div>:
+           <ul className="font-link">
             <li onClick={() => setMenu(!menu)}>x</li>
-            <li><NavLink to='/'>Home</NavLink></li>
-            <li><NavLink to='/playlists'> Playlist</NavLink></li>
-            <li><NavLink to='/songs'> Songs</NavLink></li>
-          </ul>
-        )}
-      </div>
-    </>
-  );
+            <li><Link to='/'> Home</Link></li>
+            <li><Link to='/playlists'>Playlists</Link></li>
+            <li><Link to='/songs'>Songs</Link> </li>
+           </ul>
+           }
+         </Menu>
+
+        </Nav>
+    )
 }
 
-export default Nav;
+export default Nav
+
+const Nav = styled.div`
+  display: flex;
+  justify-content:space-between;
+  
+`;
+
+const Menu = styled.div`
+  display: flex;
+  align-items: center;
+  font-family:Arial;
+  a{
+    text-decoration: none;
+    color:red;
+  }
+  a:hover{
+    color:grey
+  }
+  ul{
+    list-style:none;
+  }
+  
+`;
