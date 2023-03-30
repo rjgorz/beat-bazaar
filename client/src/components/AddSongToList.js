@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Button, Icon, List, Pagination, Container } from "semantic-ui-react"
 
 
-function AddSongToList({ songs, playlistId }) {
+function AddSongToList({ songs, playlistId, setRefresh, refresh }) {
     const [endArray, setEndArray] = useState(10);
-    
+
     function handleClick(id) {
         fetch('/playlist_songs', {
             method: 'POST',
@@ -14,19 +14,16 @@ function AddSongToList({ songs, playlistId }) {
                 playlist_id: playlistId
             })
         })
-        .then(r => r.json())
-        .then(r => console.log(r))
-        
+            .then(r => r.json())
+            .then(() => setRefresh(!refresh))
     }
 
     const songList = songs.map(song => {
         return (
-            <React.Fragment key={song.id} className='new-songs'>
-                <Button icon onClick={() => handleClick(song.id)} floated='left' >
-                        <Icon name="plus" size="small" />
+            <React.Fragment key={song.id}>
+                <Button icon onClick={() => handleClick(song.id)} floated='right' >
+                    <Icon name="plus" size="small" />
                 </Button>
-                <br />
-                <br />
                 <List.Item >
                     <List.Content>
                         <List.Header>
@@ -39,7 +36,6 @@ function AddSongToList({ songs, playlistId }) {
                         </List.Description>
                     </List.Content>
                 </List.Item>
-                
             </React.Fragment>
         )
     })
@@ -58,7 +54,7 @@ function AddSongToList({ songs, playlistId }) {
 
     return (
         <Container>
-            <List size='large'>
+            <List size='large' divided>
                 {songsToRender}
             </List>
             <Pagination defaultActivePage={1} totalPages={Math.ceil(length / 10)} onClick={handlePage} />

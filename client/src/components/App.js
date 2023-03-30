@@ -74,7 +74,7 @@ function App() {
           <Home addSong={addSong}/>
         </Route>
         <Route path='/playlist/:id'>
-          <IndividualPlaylist songs={songs}/>
+          <IndividualPlaylist songs={songs} setRefresh={setRefresh} refresh={refresh} />
         </Route>
         <Route path='/playlists'>
           <Playlists playlists={playlists} />

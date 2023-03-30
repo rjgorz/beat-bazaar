@@ -8,14 +8,14 @@ function AllSongs({ songs, handleDelete }) {
 
     const songList = songs.map(song => {
         return (
-            <React.Fragment key={song.id}>
+            <React.Fragment key={song.id} className='song-list-item'>
                 <br />
                 <List.Item>
                     <List.Icon name="music" size="big" color='black' />
                     <List.Content >
                         <List.Header >
                             {song.title}
-                            <Button.Group basic size='small'>
+                            <Button.Group basic size='small' floated='right' color='black'>
                                 <Link to={`songs/${song.id}/edit`}>
                                     <Button icon>
                                         <Icon name='edit' size="small" />
@@ -30,9 +30,9 @@ function AllSongs({ songs, handleDelete }) {
                             {song.artist}
                             {'    '}||{'    '}
                             {song.genre}
-                            <Button onClick={() => { window.open(song.url) }} float='right'>Listen!</Button>
                         </List.Description>
                     </List.Content>
+                    <Button onClick={() => { window.open(song.url) }} floated='right' color='black'>Listen!</Button>
                 </List.Item>
             </React.Fragment>
         )
@@ -52,7 +52,7 @@ function AllSongs({ songs, handleDelete }) {
 
     return (
         <Container>
-            <List size='big'>
+            <List size='big' divided>
                 {songsToRender}
             </List>
             <Pagination defaultActivePage={1} totalPages={Math.ceil(length / 10)} onClick={handlePage} />

@@ -172,5 +172,18 @@ class PlaylistSongs(Resource):
         )
 api.add_resource(PlaylistSongs, '/playlist_songs')
 
+class PlaylistSongById(Resource):
+    def delete(self, playlist_id, song_id):
+        playlist_songs = PlaylistSong.query.filter(PlaylistSong.playlist_id == playlist_id).all()
+
+        for ps in playlist_songs:
+            if ps.song_id == song_id:
+                db.session.delete(ps)
+                db.session.commit()
+
+                return make_response({ 'success': 'Relationship successfully deleted'})
+
+api.add_resource(PlaylistSongById, '/playlist_songs/<int:playlist_id>/<int:song_id>')
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
