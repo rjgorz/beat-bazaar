@@ -7,7 +7,6 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 function Navigation() {
  const [menu, setMenu] = useState(false)
 
-
     return (
         <Nav> 
          <Menu>

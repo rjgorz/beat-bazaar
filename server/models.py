@@ -11,7 +11,6 @@ class Song(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
-    artist = db.Column(db.String, nullable=False)
     genre = db.Column(db.String, nullable=False)
     url = db.Column(db.String, nullable=False)
 
