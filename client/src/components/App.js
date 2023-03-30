@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Playlists from "./Playlists";
 import AllSongs from "./AllSongs";
-import Nav from "./Nav";
-
+import Navigation from "./Nav";
 import '../index.css'
 import Home from "./Home";
 
@@ -34,13 +33,15 @@ useEffect(() => {
   }, [])
 
   return(
-    <div style = {{
-        backgroundImage: `url("https://www.onlygfx.com/wp-content/uploads/2018/08/10-realistic-lightning-bolt-cover.jpg")`
+    <div>
+     <div style = {{
+      backgroundImage: `url("https://www.onlygfx.com/wp-content/uploads/2018/08/10-realistic-lightning-bolt-cover.jpg")`
       }} className = {`App ${theme}`}>
         <button className="btn" style={{float: 'right'}} onClick = {toggleTheme}>Toggle Theme</button>
         <h1 className= 'h1'>BeatBazaar</h1>
-        <Nav style = {{float: 'right'}}/>
-      <Switch>
+        <Navigation style = {{float: 'right'}}/>
+        </div>
+        <Switch>
         <Route exact path='/'>
           <Home />
         </Route>
@@ -54,6 +55,7 @@ useEffect(() => {
       <Playlists playlists={playlists} />
     </div>
   )
-}
+  }
+
 
 export default App;
