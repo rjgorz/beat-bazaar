@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import { Container } from "semantic-ui-react"
 import Playlists from "./Playlists";
 import AllSongs from "./AllSongs";
 import Navigation from "./Nav";
@@ -54,7 +53,8 @@ useEffect(() => {
           <AllSongs songs={songs} />
         </Route>
       </Switch>
-    </Container>
+      <Playlists playlists={playlists} />
+    </div>
   )
   }
 

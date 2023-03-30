@@ -1,8 +1,8 @@
-"""populated models
+"""populated models and relationships
 
-Revision ID: 3a4c7ff9481f
+Revision ID: 241431d3443a
 Revises: 
-Create Date: 2023-03-29 17:39:39.205829
+Create Date: 2023-03-29 13:03:09.439958
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3a4c7ff9481f'
+revision = '241431d3443a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,7 +26,7 @@ def upgrade():
     op.create_table('songs',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(), nullable=False),
-    sa.Column('artist', sa.String(), nullable=False),
+    sa.Column('likes', sa.Integer(), nullable=False),
     sa.Column('genre', sa.String(), nullable=False),
     sa.Column('url', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('id')
