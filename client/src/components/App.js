@@ -6,7 +6,6 @@ import AllSongs from "./AllSongs";
 import Navigation from "./Nav";
 import '../index.css'
 import Home from "./Home";
-import SongForm from "./SongForm"
 
 
 function App() {
@@ -54,7 +53,7 @@ useEffect(() => {
           <AllSongs songs={songs} />
         </Route>
       </Switch>
-    </Container>
+    </div>
   )
   }
 

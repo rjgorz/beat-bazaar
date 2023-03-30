@@ -6,7 +6,7 @@ function AllSongs({ songs }) {
     const [endArray, setEndArray] = useState(10);
 
     const songList = songs.map(song => {
-        return(
+        return (
             <>
                 <br />
                 <List.Item>
@@ -40,12 +40,12 @@ function AllSongs({ songs }) {
     }
 
     return (
-    <Container>
-        <List size='big'>
-            {songsToRender}
-        </List>
-        <Pagination defaultActivePage={1} totalPages={Math.ceil(length / 10)} onClick={handlePage} />
-    </Container>
+        <Container>
+            <List size='big'>
+                {songsToRender}
+            </List>
+            <Pagination defaultActivePage={1} totalPages={Math.ceil(length / 10)} onClick={handlePage} />
+        </Container>
     )
 }
 
