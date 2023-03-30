@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import { GiHamburgerMenu } from 'react-icons/gi'
 
-function Nav() {
+function Navigation() {
  const [menu, setMenu] = useState(false)
 
     return (
@@ -27,7 +27,7 @@ function Nav() {
     )
 }
 
-export default Nav
+export default Navigation
 
 const Nav = styled.div`
   display: flex;
