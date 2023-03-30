@@ -4,14 +4,20 @@ import Playlists from "./Playlists";
 import AllSongs from "./AllSongs";
 import Navigation from "./Nav";
 import '../index.css'
-import Navigation from "./Nav";
-import '../index.css'
 import Home from "./Home";
-import SongForm from "./SongForm"
 
 function App() {
   const [playlists, setPlaylists] = useState([])
   const [songs, setSongs] = useState([])
+  const [theme, setTheme] = useState('dark')
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
 
   useEffect(() => {
     fetch('/songs')

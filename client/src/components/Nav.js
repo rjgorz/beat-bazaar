@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import { useHistory } from 'react-router-dom'
 import { GiHamburgerMenu } from 'react-icons/gi'
 
 function Navigation() {
@@ -27,7 +26,7 @@ function Navigation() {
     )
 }
 
-export default Navigation
+export default Navigation;
 
 const Nav = styled.div`
   display: flex;
