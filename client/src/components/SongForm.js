@@ -8,12 +8,15 @@ function SongForm({addSong}) {
     const history = useHistory()
     const formSchema = yup.object().shape({
       title: yup.string().required("Must enter a title"),
+      artist: yup.string().required("Must enter an artist"),
+      genre: yup.string(),
       url: yup.string()
     })
 
     const formik = useFormik({
         initialValues: {
           title:'',
+          artist:'',
           genre: '',
           url:'',
         },
@@ -43,6 +46,9 @@ function SongForm({addSong}) {
         <Form onSubmit={formik.handleSubmit}>
           <label>Title </label>
           <input type='text' name='title' value={formik.values.title} onChange={formik.handleChange} />
+
+          <label> Artist </label>
+          <input type='text' name='artist' value={formik.values.artist} onChange={formik.handleChange} />
           
           <label> Genre </label>
           <input type='text' name='genre' value={formik.values.genre} onChange={formik.handleChange} />
@@ -65,8 +71,9 @@ function SongForm({addSong}) {
     margin:auto;
     font-family:'Permanent marker';
     font-size:30px;
+    color: black;
     input[type=submit]{
-      background-color:red;
+      background-color:black;
       color: white;
       height:40px;
       font-family: 'Permanent marker';

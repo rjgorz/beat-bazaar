@@ -28,9 +28,10 @@ if __name__ == '__main__':
         print("Starting seed...")
 
         songs = []
-        for i in range(10):
+        for i in range(100):
             new_song = Song(
                 title=fake.unique.word(),
+                artist=fake.name(),
                 genre='something',
                 url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             )
@@ -39,7 +40,7 @@ if __name__ == '__main__':
         db.session.commit()
         
         playlists = []
-        for i in range(1, 4):
+        for i in range(1, 11):
             new_playlist = Playlist(
                 title=fake.unique.word()
             )
@@ -47,11 +48,10 @@ if __name__ == '__main__':
         db.session.add_all(playlists)
         db.session.commit()
 
-        for i in range(1, 4):
+        for i in range(1, 11):
             song_ids = list(range(1, 11))
             for j in range(5):
                 ps = PlaylistSong(
-                    user=fake.unique.name(),
                     song_id=rc(song_ids),
                     playlist_id=i
                 )

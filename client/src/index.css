@@ -1,9 +1,18 @@
-.font-link {
+*, .font-link {
     font-family: 'Permanent Marker';
 }
 
+.background {
+    background-image: url("https://cdn.shopify.com/s/files/1/0153/0623/products/SoundWaveWallpaperfromtheExclusivesCollectionbyGraham_Brown_1c90998a-78c3-403d-830a-aa05bc9da1e3_1080x.jpg?v=1596556895");
+    background-size: "cover";
+    height: 100vh;
+    margin-top: -20px;
+    background-repeat: repeat;
+    color: white
+}
+
 .btn {
-    background-color: black;
+    background-color: rgb(59, 56, 56);
     color: white;
     font-size: 20px;
     padding: 10px 60px;
@@ -13,16 +22,20 @@
     font-family: 'Permanent Marker';
 }
 .dark {
-    background-color: #333;
-    color: #fff;
-    }
+    background-color: #3e3c3c;
+    color: #ca0404;
+}
 .light {
     background-color: #fff;
-    color: #333;
+    color: rgb(24, 3, 245);
     }
 
 .h1 {
     font-size: 70px;
     font-family: 'Permanent Marker';
     text-align: Center;
+}
+
+.new-songs {
+    display: inline-grid;
 }

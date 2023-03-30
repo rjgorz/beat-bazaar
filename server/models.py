@@ -11,11 +11,12 @@ class Song(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
+    artist = db.Column(db.String, nullable=False)
     genre = db.Column(db.String, nullable=False)
     url = db.Column(db.String, nullable=False)
 
     playlist_songs = db.relationship('PlaylistSong', backref='song')
-    playlists = association_proxy('playlist_songs', 'song')
+    playlists = association_proxy('playlist_songs', 'playlist')
 
     def __repr__(self):
         return f'<Song {self.title}>'
@@ -30,7 +31,7 @@ class Playlist(db.Model, SerializerMixin):
     title = db.Column(db.String, nullable=False)
 
     playlist_songs = db.relationship('PlaylistSong', backref='playlist')
-    songs = association_proxy('playlist_songs', 'playlist')
+    songs = association_proxy('playlist_songs', 'song')
 
     def __repr__(self):
         return f'<Playlist {self.title}>'
@@ -42,7 +43,6 @@ class PlaylistSong(db.Model, SerializerMixin):
                        '-playlist.playlist_songs', '-playlist.songs')
 
     id = db.Column(db.Integer, primary_key=True)
-    user = db.Column(db.String, nullable=False)
 
     song_id = db.Column(db.Integer, db.ForeignKey('songs.id'))
     playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.id'))

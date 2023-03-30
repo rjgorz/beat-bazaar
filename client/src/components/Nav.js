@@ -40,7 +40,7 @@ const Menu = styled.div`
   font-family:Arial;
   a{
     text-decoration: none;
-    color:red;
+    color: black;
   }
   a:hover{
     color:grey
