@@ -77,7 +77,7 @@ function App() {
           <IndividualPlaylist songs={songs} setRefresh={setRefresh} refresh={refresh} />
         </Route>
         <Route path='/playlists'>
-          <Playlists playlists={playlists} />
+          <Playlists playlists={playlists} setRefresh={setRefresh} refresh={refresh} />
         </Route>
         <Route path='/songs/:id/edit'>
           <EditSongForm updateSong={updateSong} />

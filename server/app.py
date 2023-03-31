@@ -119,33 +119,22 @@ class PlaylistById(Resource):
             200
         )
     
-    # def patch(self, id):
-    #     song = Song.query.filter(Song.id == id).first()
+    def delete(self, id):
+        playlist = Playlist.query.filter(Playlist.id == id).first()
 
-    #     if not song:
-    #         return make_response({ 'error': 'Song not found!' }, 404)
+        if not playlist:
+            return make_response({ 'error': 'Song not found!' }, 404)
+        
+        playlist_songs = PlaylistSong.query.filter(PlaylistSong.playlist_id == playlist.id).all()
 
-    #     for attr in request.get_json():
-    #         setattr(song, attr, request.get_json()[attr])
+        for playlist_song in playlist_songs:
+            db.session.delete(playlist_song)
+            db.session.commit()
 
-    #     db.session.add(song)
-    #     db.session.commit()
+        db.session.delete(playlist)
+        db.session.commit()
 
-    #     return make_response(
-    #         song.to_dict(),
-    #         200
-    #     )
-    
-    # def delete(self, id):
-    #     song = Song.query.filter(Song.id == id).first()
-
-    #     if not song:
-    #         return make_response({ 'error': 'Song not found!' }, 404)
-
-    #     db.session.delete(song)
-    #     db.session.commit()
-
-    #     return make_response({ "success": "Song successfully deleted"}, 200)
+        return make_response({ "success": "Song successfully deleted"}, 200)
 api.add_resource(PlaylistById, '/playlists/<int:id>')
 
 class PlaylistSongs(Resource):

@@ -32,7 +32,9 @@ function AllSongs({ songs, handleDelete }) {
                             {song.genre}
                         </List.Description>
                     </List.Content>
-                    <Button onClick={() => { window.open(song.url) }} floated='right' color='black'>Listen!</Button>
+                    <Button onClick={() => { window.open(song.url) }} floated='right' color='black'>
+                        Listen!
+                    </Button>
                 </List.Item>
             </React.Fragment>
         )
