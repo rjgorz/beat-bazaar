@@ -15,13 +15,12 @@ function Navigation() {
            </div>:
            <ul className="font-link">
             <li onClick={() => setMenu(!menu)}>x</li>
-            <li><Link to='/'> Home</Link></li>
+            <li><Link to='/add'>Add Song/Playlist</Link></li>
             <li><Link to='/playlists'>Playlists</Link></li>
             <li><Link to='/songs'>Songs</Link> </li>
            </ul>
            }
          </Menu>
-
         </Nav>
     )
 }

@@ -71,7 +71,6 @@ function IndividualPlaylist({ songs, setRefresh, refresh }) {
         const filtered = list.filter(song => {
             return !idsToRemove.includes(song.id)
         })
-        console.log(filtered)
         return filtered
     }
 

@@ -21,7 +21,7 @@ function AddSongToList({ songs, playlistId, setRefresh, refresh }) {
     const songList = songs.map(song => {
         return (
             <React.Fragment key={song.id}>
-                <Button icon onClick={() => handleClick(song.id)} floated='right' >
+                <Button icon basic color='black' onClick={() => handleClick(song.id)} floated='right' >
                     <Icon name="plus" size="small" />
                 </Button>
                 <List.Item >

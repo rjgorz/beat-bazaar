@@ -70,7 +70,7 @@ function App() {
         <Navigation style={{ float: 'right' }} />
       </div>
       <Switch>
-        <Route exact path='/'>
+        <Route path='/add'>
           <Home addSong={addSong}/>
         </Route>
         <Route path='/playlist/:id'>

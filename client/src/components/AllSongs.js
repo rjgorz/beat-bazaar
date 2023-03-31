@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
-import { Icon, List, Pagination, Button, Container } from "semantic-ui-react"
+import { Segment, Icon, List, Pagination, Button, Container } from "semantic-ui-react"
 
 
 function AllSongs({ songs, handleDelete }) {
@@ -8,7 +8,7 @@ function AllSongs({ songs, handleDelete }) {
 
     const songList = songs.map(song => {
         return (
-            <React.Fragment key={song.id} className='song-list-item'>
+            <React.Fragment key={song.id}>
                 <br />
                 <List.Item>
                     <List.Icon name="music" size="big" color='black' />
