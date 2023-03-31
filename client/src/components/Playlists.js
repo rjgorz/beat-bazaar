@@ -1,15 +1,16 @@
-import React from "react";
-import { Button, List, Icon, Container } from "semantic-ui-react"
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Button, List, Icon, Container, Pagination } from "semantic-ui-react";
+import { Link } from 'react-router-dom';
 
 function Playlists({ playlists, setRefresh, refresh }) {
+    const [endArray, setEndArray] = useState(10);
 
     function handleDelete(id) {
         fetch(`/playlists/${id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
         })
-        .then(() => setRefresh(!refresh))
+            .then(() => setRefresh(!refresh))
     }
 
     const playlistList = playlists.map(playlist => {
@@ -29,27 +30,40 @@ function Playlists({ playlists, setRefresh, refresh }) {
                         </List.Header>
                         <List.Description >
                             {playlist.songs.length} Songs
+                            {'     '}||{'     '}
+                            Created by {playlist.creator}
                         </List.Description>
                     </List.Content>
-                    <Button floated='right'>
-                        <Link to={`/playlist/${playlist.id}`}>
+                    <Link to={`/playlist/${playlist.id}`}>
+                        <Button floated='right' color='black'>
                             View Here!
-                        </Link>
-                    </Button>
+                        </Button>
+                    </Link>
                 </List.Item>
             </React.Fragment>
         )
     })
 
+    const length = playlistList.length;
 
+    let playlistsToRender = [];
+    if (playlistList.length > 0) {
+        for (let i = endArray - 10; i < endArray; i++)
+            playlistsToRender.push(playlistList[i]);
+    }
+
+    function handlePage(e) {
+        setEndArray((e.target.getAttribute('value') * 10));
+    }
 
     return (
         <Container style={{ color: "black" }}>
             <List size='big' divided>
-                {playlistList}
+                {playlistsToRender}
             </List>
+            <Pagination defaultActivePage={1} totalPages={Math.ceil(length / 10)} onClick={handlePage} />
         </Container>
     )
 }
 
-export default Playlists
+export default Playlists;

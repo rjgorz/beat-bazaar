@@ -1,8 +1,8 @@
-"""populated models and relationships
+"""models and relationships
 
-Revision ID: 241431d3443a
+Revision ID: 28d649ef664a
 Revises: 
-Create Date: 2023-03-29 13:03:09.439958
+Create Date: 2023-03-31 08:41:06.645247
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '241431d3443a'
+revision = '28d649ef664a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,19 +21,19 @@ def upgrade():
     op.create_table('playlists',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(), nullable=False),
+    sa.Column('creator', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('songs',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(), nullable=False),
-    sa.Column('likes', sa.Integer(), nullable=False),
+    sa.Column('artist', sa.String(), nullable=False),
     sa.Column('genre', sa.String(), nullable=False),
     sa.Column('url', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('playlist_songs',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user', sa.String(), nullable=False),
     sa.Column('song_id', sa.Integer(), nullable=True),
     sa.Column('playlist_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['playlist_id'], ['playlists.id'], name=op.f('fk_playlist_songs_playlist_id_playlists')),

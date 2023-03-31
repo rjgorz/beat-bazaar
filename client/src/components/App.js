@@ -61,7 +61,7 @@ function App() {
   }
 
   return (
-    <div className = "background">
+    <div className="background">
       <div style={{
         backgroundImage: `url("https://cdn.shopify.com/s/files/1/0153/0623/products/SoundWaveWallpaperfromtheExclusivesCollectionbyGraham_Brown_1c90998a-78c3-403d-830a-aa05bc9da1e3_1080x.jpg?v=1596556895")`
       }} className={`App ${theme}`}>
@@ -71,7 +71,7 @@ function App() {
       </div>
       <Switch>
         <Route path='/add'>
-          <Home addSong={addSong}/>
+          <Home addSong={addSong} />
         </Route>
         <Route path='/playlist/:id'>
           <IndividualPlaylist songs={songs} setRefresh={setRefresh} refresh={refresh} />

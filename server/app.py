@@ -95,7 +95,8 @@ class Playlists(Resource):
     
     def post(self):
         new_playlist = Playlist(
-            title=request.get_json()['title']
+            title=request.get_json()['title'],
+            creator=request.get_json()['creator']
         )
 
         db.session.add(new_playlist)

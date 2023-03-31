@@ -29,6 +29,7 @@ class Playlist(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
+    creator = db.Column(db.String, nullable=False)
 
     playlist_songs = db.relationship('PlaylistSong', backref='playlist')
     songs = association_proxy('playlist_songs', 'song')

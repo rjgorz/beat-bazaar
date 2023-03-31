@@ -27,12 +27,14 @@ if __name__ == '__main__':
         
         print("Starting seed...")
 
+        genres = ['Rock', 'Classical', 'Country', 'EDM', 'Pop', 'Hip Hop', 'R&B', 'Metal', 'Folk', 'Jazz', 'Alternative']
+
         songs = []
         for i in range(100):
             new_song = Song(
                 title=fake.unique.word(),
                 artist=fake.name(),
-                genre='something',
+                genre=rc(genres),
                 url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             )
             songs.append(new_song)
@@ -42,7 +44,8 @@ if __name__ == '__main__':
         playlists = []
         for i in range(1, 11):
             new_playlist = Playlist(
-                title=fake.unique.word()
+                title=fake.unique.word(),
+                creator=fake.name()
             )
             playlists.append(new_playlist)
         db.session.add_all(playlists)

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
-import { Segment, Icon, List, Pagination, Button, Container } from "semantic-ui-react"
+import { Icon, List, Pagination, Button, Container } from "semantic-ui-react"
 
 
 function AllSongs({ songs, handleDelete }) {
@@ -28,7 +28,7 @@ function AllSongs({ songs, handleDelete }) {
                         </List.Header>
                         <List.Description >
                             {song.artist}
-                            {'    '}||{'    '}
+                            {'     '}||{'     '}
                             {song.genre}
                         </List.Description>
                     </List.Content>

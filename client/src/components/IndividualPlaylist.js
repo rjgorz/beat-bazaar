@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Icon, List, Pagination, Button, Container } from "semantic-ui-react"
-import { useParams } from 'react-router-dom'
-import AddSongToList from "./AddSongToList"
+import { Icon, List, Pagination, Button, Container } from "semantic-ui-react";
+import { useParams } from 'react-router-dom';
+import AddSongToList from "./AddSongToList";
 
 function IndividualPlaylist({ songs, setRefresh, refresh }) {
 
-    const { id } = useParams()
+    const { id } = useParams();
     const [endArray, setEndArray] = useState(10);
-    const [playlist, setPlaylist] = useState({})
-    const [displaylist, setDisplaylist] = useState([])
+    const [playlist, setPlaylist] = useState({});
+    const [displaylist, setDisplaylist] = useState([]);
 
     function handleRemove(song_id) {
         fetch(`/playlist_songs/${id}/${song_id}`, {
@@ -22,7 +22,7 @@ function IndividualPlaylist({ songs, setRefresh, refresh }) {
         fetch(`/playlists/${id}`)
             .then(r => r.json())
             .then(playlist_data => {
-                setDisplaylist(filter(songs, playlist_data))
+                setDisplaylist(filter(songs, playlist_data));
                 setPlaylist(
                     playlist_data.songs.map(song => {
                         return (
@@ -49,14 +49,14 @@ function IndividualPlaylist({ songs, setRefresh, refresh }) {
                                     <Button onClick={() => { window.open(song.url) }} floated='right' color='black'>Listen!</Button>
                                 </List.Item>
                             </React.Fragment>
-                        )
-                    }))
-            })
-    }, [refresh])
+                        );
+                    }));
+            });
+    }, [refresh]);
 
     const length = playlist.length;
 
-    let songsToRender = []
+    let songsToRender = [];
     if (playlist.length > 0) {
         for (let i = endArray - 10; i < endArray; i++)
             songsToRender.push(playlist[i]);
@@ -67,17 +67,17 @@ function IndividualPlaylist({ songs, setRefresh, refresh }) {
     }
 
     function filter(list, playlist) {
-        const idsToRemove = playlist.songs.map((song) => song.id)
+        const idsToRemove = playlist.songs.map((song) => song.id);
         const filtered = list.filter(song => {
-            return !idsToRemove.includes(song.id)
-        })
-        return filtered
+            return !idsToRemove.includes(song.id);
+        });
+        return filtered;
     }
 
     return (
         <>
             <Container>
-                <List size='big'>
+                <List size='big' divided>
                     {songsToRender}
                 </List>
                 <Pagination defaultActivePage={1} totalPages={Math.ceil(length / 10)} onClick={handlePage} />
@@ -87,7 +87,7 @@ function IndividualPlaylist({ songs, setRefresh, refresh }) {
                 <AddSongToList songs={songs} playlistId={id} setRefresh={setRefresh} refresh={refresh} />
             </Container>
         </>
-    )
+    );
 }
 
 export default IndividualPlaylist;

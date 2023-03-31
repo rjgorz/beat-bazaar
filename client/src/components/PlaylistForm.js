@@ -4,47 +4,56 @@ import { useHistory } from 'react-router-dom'
 import { useFormik } from "formik"
 import * as yup from "yup"
 
-function PlaylistForm ({addPlaylist}) {
-    const history = useHistory()
-    const formSchema = yup.object().shape({
-      title: yup.string().required("Must enter a title"),
-})
-const formik = useFormik({
+function PlaylistForm({ addPlaylist }) {
+  const history = useHistory()
+  const formSchema = yup.object().shape({
+    title: yup.string().required("Must enter a title"),
+    creator: yup.string().required("Must enter a name"),
+  })
+  const formik = useFormik({
     initialValues: {
-      title:'',
+      title: '',
+      creator: '',
     },
     validationSchema: formSchema,
-        onSubmit: (values) => {
-          fetch("/playlists", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(values, null, 2),
-          }).then((res) => {
-            if(res.ok) {
-              res.json().then(playlist => {
-                addPlaylist(playlist)
-                history.push(`/playlists/${playlist.id}`)
-              })
-            }
-          })
+    onSubmit: (values) => {
+      fetch("/playlists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-    })
+        body: JSON.stringify(values, null, 2),
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then(playlist => {
+            addPlaylist(playlist)
+            history.push(`/playlists/${playlist.id}`)
+          })
+        }
+      })
+    },
+  })
 
-    return (
-      <div className='App'>
+  return (
+    <div className='App'>
 
       <Form onSubmit={formik.handleSubmit}>
         <label>Title </label>
+        <br />
         <input type='text' name='title' value={formik.values.title} onChange={formik.handleChange} />
+        <br />
+        <label>Creator Name </label>
+        <br />
+        <input type='text' name='creator' value={formik.values.creator} onChange={formik.handleChange} />
+
         <input type='submit' />
-        </Form> 
-        </div>
-      )
+      </Form>
+    </div>
+  )
 }
 
-export default PlaylistForm
+export default PlaylistForm;
+
 const Form = styled.form`
     display:flex;
     flex-direction:column;
