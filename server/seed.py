@@ -28,6 +28,8 @@ if __name__ == '__main__':
         print("Starting seed...")
 
         genres = ['Rock', 'Classical', 'Country', 'EDM', 'Pop', 'Hip Hop', 'R&B', 'Metal', 'Folk', 'Jazz', 'Alternative']
+        links = ['https://www.youtube.com/embed/1k8craCGpgs?autoplay=1', 'https://www.youtube.com/embed/5JfU4PKgmJc?autoplay=1', 'https://www.youtube.com/embed/1w7OgIMMRc4?autoplay=1', 'https://www.youtube.com/embed/hTWKbfoikeg?autoplay=1',
+                 'https://www.youtube.com/embed/v2AC41dglnM?autoplay=1', 'https://www.youtube.com/embed/HQnC1UHBvWA?autoplay=1', 'https://www.youtube.com/embed/_qYyU019PbI?autoplay=1', 'https://www.youtube.com/embed/IxxstCcJlsc?autoplay=1']
 
         songs = []
         for i in range(100):
@@ -35,7 +37,7 @@ if __name__ == '__main__':
                 title=fake.unique.word(),
                 artist=fake.name(),
                 genre=rc(genres),
-                url='https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
+                url=rc(links)
             )
             songs.append(new_song)
         db.session.add_all(songs)
