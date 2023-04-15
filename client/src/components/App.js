@@ -3,17 +3,18 @@ import { Switch, Route } from "react-router-dom";
 import Playlists from "./Playlists";
 import AllSongs from "./AllSongs";
 import Navigation from "./Nav";
-import '../index.css'
+import '../index.css';
 import Home from "./Home";
-import IndividualPlaylist from "./IndividualPlaylist"
-import EditSongForm from "./EditSongForm"
+import IndividualPlaylist from "./IndividualPlaylist";
+import EditSongForm from "./EditSongForm";
+import Landing from "./Landing";
 
 
 function App() {
-  const [playlists, setPlaylists] = useState([])
-  const [songs, setSongs] = useState([])
-  const [theme, setTheme] = useState('dark')
-  const [refresh, setRefresh] = useState(false)
+  const [playlists, setPlaylists] = useState([]);
+  const [songs, setSongs] = useState([]);
+  const [theme, setTheme] = useState('dark');
+  const [refresh, setRefresh] = useState(false);
 
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -31,7 +32,7 @@ function App() {
     fetch('/playlists')
       .then(r => r.json())
       .then(playlist_data => setPlaylists(playlist_data))
-  }, [refresh])
+  }, [refresh]);
 
   useEffect(() => {
     document.body.className = theme;
@@ -49,6 +50,10 @@ function App() {
     setSongs([song, ...songs]);
   }
 
+  function addPlaylist(playlist) {
+    setSongs([playlist, ...playlists]);
+  }
+
   function updateSong(updatedSong) {
     const updatedSongs = songs.map(ogSong => {
       if (ogSong.id === updateSong.id)
@@ -61,20 +66,21 @@ function App() {
   }
 
   return (
-    <div className="background">
-      <div style={{
-        backgroundImage: `url("https://cdn.shopify.com/s/files/1/0153/0623/products/SoundWaveWallpaperfromtheExclusivesCollectionbyGraham_Brown_1c90998a-78c3-403d-830a-aa05bc9da1e3_1080x.jpg?v=1596556895")`
-      }} className={`App ${theme}`}>
+    <div className={`background App ${theme}`}>
+      <div >
         <button className="btn" style={{ float: 'right' }} onClick={toggleTheme}>Toggle Theme</button>
         <h1 className='h1'>BeatBazaar</h1>
         <Navigation style={{ float: 'right' }} />
       </div>
       <Switch>
+        <Route exact path='/'>
+          <Landing />
+        </Route>
         <Route path='/add'>
-          <Home addSong={addSong} />
+          <Home addSong={addSong} addPlaylist={addPlaylist} />
         </Route>
         <Route path='/playlist/:id'>
-          <IndividualPlaylist songs={songs} setRefresh={setRefresh} refresh={refresh} />
+          <IndividualPlaylist songs={songs} setRefresh={setRefresh} refresh={refresh} handleDelete={handleDelete} />
         </Route>
         <Route path='/playlists'>
           <Playlists playlists={playlists} setRefresh={setRefresh} refresh={refresh} />
@@ -88,7 +94,7 @@ function App() {
 
       </Switch>
     </div>
-  )
+  );
 }
 
 export default App;

@@ -3,7 +3,7 @@ import SongForm from './SongForm'
 import PlaylistForm from "./PlaylistForm"
 import "../index.css"
 
-function Home({ addSong }, { addPlaylist }) {
+function Home({ addSong, addPlaylist }) {
     const [toggleSong, setToggleSong] = useState(false)
     const [toggle, setToggle] = useState(false)
     const handleClickSong = () => {

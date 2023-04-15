@@ -35,7 +35,7 @@ if __name__ == '__main__':
                 title=fake.unique.word(),
                 artist=fake.name(),
                 genre=rc(genres),
-                url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                url='https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
             )
             songs.append(new_song)
         db.session.add_all(songs)

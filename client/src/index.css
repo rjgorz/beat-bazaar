@@ -1,10 +1,17 @@
-*, .font-link {
+*,
+.font-link {
     font-family: 'Permanent Marker';
+}
+
+#root {
+    justify-content: center;
+    text-align: center;
 }
 
 .background {
     background: url("https://cdn.shopify.com/s/files/1/0153/0623/products/SoundWaveWallpaperfromtheExclusivesCollectionbyGraham_Brown_1c90998a-78c3-403d-830a-aa05bc9da1e3_1080x.jpg?v=1596556895") no-repeat center center fixed;
-    /* background-size: "cover"; */
+    background-size: "cover";
+    min-height: 100vh;
     height: 100%;
     margin-top: -20px;
     background-repeat: repeat;
@@ -22,14 +29,16 @@
     cursor: pointer;
     font-family: 'Permanent Marker';
 }
+
 .dark {
-    background-color: #3e3c3c;
+    /* background-color: #3e3c3c; */
     color: #ca0404;
 }
+
 .light {
-    background-color: #fff;
+    /* background-color: #fff; */
     color: rgb(24, 3, 245);
-    }
+}
 
 .h1 {
     font-size: 70px;
@@ -37,10 +46,15 @@
     text-align: Center;
 }
 
-.new-songs {
-    display: inline-grid;
+#root > div > div:nth-child(4) > div > div.ui.large.divided.list {
+    text-align: left;
 }
 
-.song-list-item {
-    display:flex;
+body > div.ui.page.modals.dimmer.transition.visible.active > div > div.actions > button {
+    background-color: black !important;
+}
+
+.instructions {
+    font-size: 20px;
+    font-weight: bold;
 }

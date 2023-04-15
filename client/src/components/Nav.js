@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {Link} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { GiHamburgerMenu } from 'react-icons/gi'
 
@@ -13,11 +13,12 @@ function Navigation() {
            <div onClick={() => setMenu(!menu)}>
              <GiHamburgerMenu size={40}/> 
            </div>:
-           <ul className="font-link">
+           <ul className="font-NavLink">
             <li onClick={() => setMenu(!menu)}>x</li>
-            <li><Link to='/add'>Add Song/Playlist</Link></li>
-            <li><Link to='/playlists'>Playlists</Link></li>
-            <li><Link to='/songs'>Songs</Link> </li>
+            <li><NavLink to='/'>Home</NavLink></li>
+            <li><NavLink to='/add'>Add Song/Playlist</NavLink></li>
+            <li><NavLink to='/playlists'>Playlists</NavLink></li>
+            <li><NavLink to='/songs'>Songs</NavLink> </li>
            </ul>
            }
          </Menu>

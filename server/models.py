@@ -14,6 +14,8 @@ class Song(db.Model, SerializerMixin):
     artist = db.Column(db.String, nullable=False)
     genre = db.Column(db.String, nullable=False)
     url = db.Column(db.String, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     playlist_songs = db.relationship('PlaylistSong', backref='song')
     playlists = association_proxy('playlist_songs', 'playlist')
@@ -30,6 +32,8 @@ class Playlist(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     creator = db.Column(db.String, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     playlist_songs = db.relationship('PlaylistSong', backref='playlist')
     songs = association_proxy('playlist_songs', 'song')
@@ -44,6 +48,8 @@ class PlaylistSong(db.Model, SerializerMixin):
                        '-playlist.playlist_songs', '-playlist.songs')
 
     id = db.Column(db.Integer, primary_key=True)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     song_id = db.Column(db.Integer, db.ForeignKey('songs.id'))
     playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.id'))

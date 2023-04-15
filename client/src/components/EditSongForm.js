@@ -30,8 +30,8 @@ function EditSongForm({ updateSong }) {
     const formSchema = yup.object().shape({
         title: yup.string().required("Must enter a title"),
         artist: yup.string().required("Must enter an artist"),
-        genre: yup.string(),
-        url: yup.string()
+        genre: yup.string().required("Must enter a genre"),
+        url: yup.string().required("Must enter a URL")
     })
 
     const formik = useFormik({

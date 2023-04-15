@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Icon, List, Pagination, Button, Container } from "semantic-ui-react";
 import { useParams } from 'react-router-dom';
 import AddSongToList from "./AddSongToList";
+import Song from './Song'
 
-function IndividualPlaylist({ songs, setRefresh, refresh }) {
+function IndividualPlaylist({ songs, setRefresh, refresh, handleDelete }) {
 
     const { id } = useParams();
     const [endArray, setEndArray] = useState(10);
@@ -26,29 +27,30 @@ function IndividualPlaylist({ songs, setRefresh, refresh }) {
                 setPlaylist(
                     playlist_data.songs.map(song => {
                         return (
-                            <React.Fragment key={song.id}>
-                                <br />
-                                <List.Item>
-                                    <List.Icon name="music" size="big" color='black' />
-                                    <List.Content>
-                                        <List.Header>
-                                            {song.title}
-                                            <Button.Group basic size='small' floated='right' color='black'>
-                                            <Button icon onClick={() => handleRemove(song.id)}>
-                                                <Icon name='trash alternate' size="small" />
-                                            </Button>
-                                            </Button.Group>
-                                        </List.Header>
-                                        <List.Description>
-                                            {song.artist}
-                                            {'    '}||{'    '}
-                                            {song.genre}
+                            <Song key={song.id} song={song} handleDelete={handleRemove} />
+                            // <React.Fragment key={song.id}>
+                            //     <br />
+                            //     <List.Item>
+                            //         <List.Icon name="music" size="big" color='black' />
+                            //         <List.Content>
+                            //             <List.Header>
+                            //                 {song.title}
+                            //                 <Button.Group basic size='small' floated='right' color='black'>
+                            //                 <Button icon onClick={() => handleRemove(song.id)}>
+                            //                     <Icon name='trash alternate' size="small" />
+                            //                 </Button>
+                            //                 </Button.Group>
+                            //             </List.Header>
+                            //             <List.Description>
+                            //                 {song.artist}
+                            //                 {'    '}||{'    '}
+                            //                 {song.genre}
                                             
-                                        </List.Description>
-                                    </List.Content>
-                                    <Button onClick={() => { window.open(song.url) }} floated='right' color='black'>Listen!</Button>
-                                </List.Item>
-                            </React.Fragment>
+                            //             </List.Description>
+                            //         </List.Content>
+                            //         <Button onClick={() => { window.open(song.url) }} floated='right' color='black'>Listen!</Button>
+                            //     </List.Item>
+                            // </React.Fragment>
                         );
                     }));
             });

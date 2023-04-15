@@ -1,42 +1,15 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
-import { Icon, List, Pagination, Button, Container } from "semantic-ui-react"
+import { List, Pagination, Container } from "semantic-ui-react";
+import Song from "./Song"
 
 
 function AllSongs({ songs, handleDelete }) {
     const [endArray, setEndArray] = useState(10);
+    
 
     const songList = songs.map(song => {
         return (
-            <React.Fragment key={song.id}>
-                <br />
-                <List.Item>
-                    <List.Icon name="music" size="big" color='black' />
-                    <List.Content >
-                        <List.Header >
-                            {song.title}
-                            <Button.Group basic size='small' floated='right' color='black'>
-                                <Link to={`songs/${song.id}/edit`}>
-                                    <Button icon>
-                                        <Icon name='edit' size="small" />
-                                    </Button>
-                                </Link>
-                                <Button icon onClick={() => handleDelete(song.id)}>
-                                    <Icon name='trash alternate' size="small" />
-                                </Button>
-                            </Button.Group>
-                        </List.Header>
-                        <List.Description >
-                            {song.artist}
-                            {'     '}||{'     '}
-                            {song.genre}
-                        </List.Description>
-                    </List.Content>
-                    <Button onClick={() => { window.open(song.url) }} floated='right' color='black'>
-                        Listen!
-                    </Button>
-                </List.Item>
-            </React.Fragment>
+            <Song key={song.id} song={song} handleDelete={handleDelete} />
         )
     })
 
